@@ -208,8 +208,6 @@ body{
 }
 
 /* ---------- 搜索 ---------- */
-.search-card{padding:22px}
-@media(min-width:768px){ .search-card{padding:26px} }
 .search-row{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch}
 
 /* 搜索引擎下拉：自绘圆角面板，统一软 UI */
@@ -471,23 +469,21 @@ body{
       <span class="spacer"></span>
       <span class="sec-chip" id="engineChip">BING</span>
     </div>
-    <div class="search-card card fade" style="animation-delay:.1s">
-      <div class="search-row">
-        <div class="engine-select" id="engineSelect">
-          <button class="engine-btn" id="engineBtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="选择搜索引擎">
-            <span class="ico" id="engineIco">◍</span>
-            <span id="engineLabel">BING</span>
-            <span class="caret">▼</span>
-          </button>
-          <div class="engine-menu" id="engineMenu" role="listbox" aria-label="搜索引擎列表">
-            <button class="engine-opt sel" type="button" role="option" data-key="bing"   data-ico="◍" aria-selected="true"><span class="ico">◍</span>BING<span class="check">✓</span></button>
-            <button class="engine-opt"     type="button" role="option" data-key="google" data-ico="⊕" aria-selected="false"><span class="ico">⊕</span>GOOGLE<span class="check">✓</span></button>
-            <button class="engine-opt"     type="button" role="option" data-key="github" data-ico="◈" aria-selected="false"><span class="ico">◈</span>GITHUB<span class="check">✓</span></button>
-          </div>
+    <div class="search-row fade" style="animation-delay:.1s">
+      <div class="engine-select" id="engineSelect">
+        <button class="engine-btn" id="engineBtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="选择搜索引擎">
+          <span class="ico" id="engineIco">◍</span>
+          <span id="engineLabel">BING</span>
+          <span class="caret">▼</span>
+        </button>
+        <div class="engine-menu" id="engineMenu" role="listbox" aria-label="搜索引擎列表">
+          <button class="engine-opt sel" type="button" role="option" data-key="bing"   data-ico="◍" aria-selected="true"><span class="ico">◍</span>BING<span class="check">✓</span></button>
+          <button class="engine-opt"     type="button" role="option" data-key="google" data-ico="⊕" aria-selected="false"><span class="ico">⊕</span>GOOGLE<span class="check">✓</span></button>
+          <button class="engine-opt"     type="button" role="option" data-key="github" data-ico="◈" aria-selected="false"><span class="ico">◈</span>GITHUB<span class="check">✓</span></button>
         </div>
-        <input id="q" type="search" placeholder="输入关键词，回车搜索…" autocomplete="off" spellcheck="false" aria-label="搜索关键词">
-        <button class="btn-primary" id="go">SEARCH</button>
       </div>
+      <input id="q" type="search" placeholder="输入关键词，回车搜索…" autocomplete="off" spellcheck="false" aria-label="搜索关键词">
+      <button class="btn-primary" id="go">SEARCH</button>
     </div>
   </section>
 
@@ -536,9 +532,8 @@ const SITES = [
   { name:'豆包',       url:'https://www.doubao.com',      icon:'🤖', tag:'AI · DOUBAO',iconSrc:'https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/favicon/new-doubao/128x128.png' },
   { name:'ChatGPT',    url:'https://chatgpt.com',        icon:'💬', tag:'AI · OPENAI' },
   { name:'DeepSeek',   url:'https://chat.deepseek.com',   icon:'🐋', tag:'AI · DEEPSEEK', iconSrc:'https://fe-static.deepseek.com/chat/icon-180.png' },
-  { name:'小番茄',     url:'https://www.xiaofanqie.com',  icon:'🍅', tag:'图片混淆' },
   { name:'研招网',     url:'https://yz.chsi.com.cn',      icon:'🎓', tag:'CHSI · 考研', iconSrc:'https://t1.chei.com.cn/yz/favicon.ico' },
-  { name:'码道',       url:'https://www.madooo.com',      icon:'🧩', tag:'TOOLS' },
+
   { name:'Nexus Mods', url:'https://www.nexusmods.com',   icon:'⬢', tag:'MODS · 游戏' },
   { name:'GitHub',     url:'https://github.com',         icon:'◈', tag:'CODE · 代码', iconSrc:'https://github.githubassets.com/favicons/favicon.svg' }
 ];
@@ -949,7 +944,7 @@ const io = new IntersectionObserver(entries => {
     if(en.isIntersecting){ en.target.classList.add('fade'); io.unobserve(en.target); }
   });
 }, {threshold:.1});
-document.querySelectorAll('.sec-head, .search-card').forEach(el => {
+document.querySelectorAll('.sec-head, .search-row').forEach(el => {
   el.style.opacity = '0';
   io.observe(el);
 });
